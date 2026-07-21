@@ -13,12 +13,22 @@
 
   <div id="menu" class="flex flex-col space-y-2">
     @for (item of menuOptions; track item.route) {
-    <a [routerLink]="item.route" routerLinkActive="bg-teal-500 text-white" class="flex gap-2 items-center group text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md">
+    <a [routerLink]="item.route" routerLinkActive="bg-teal-500 text-white"
+      class="flex gap-2 items-center group text-gray-700 py-2 px-2 hover:bg-teal-500 hover:text-white hover:text-base rounded-md">
       <i [class]="item.icon"></i>
       <div class="flex flex-col">
         <span class="text-md font-bold leading-5">{{ item.label }}</span>
-        <span routerLinkActive="text-white/90" class="text-sm text-gray-500 group-hover:text-white/90 hidden md:block">{{ item.sublabel }}</span>
+        <span routerLinkActive="text-white/90"
+          class="text-sm text-gray-500 group-hover:text-white/90 hidden md:block">{{ item.sublabel }}</span>
       </div>
+    </a>
+    }
+
+    @for (key of gifService.searchHistoryKeys(); track key) {
+    <a [routerLink]="['/dashboard/history', key]" routerLinkActive="bg-teal-500 text-white"
+      class="flex gap-2 items-end text-gray-700 py-2 pr-2 pl-4 hover:bg-teal-500 hover:text-white hover:text-base rounded-md">
+      <i class="fa-solid fa-clock-rotate-left"></i>
+      <span class="text-md leading-5">{{ key }}</span>
     </a>
     }
   </div>
